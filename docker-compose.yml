@@ -29,7 +29,6 @@ services:
       - elasticsearch
       - data
     command: ${IPADDR}
-
   web:
     image: ghcr.io/kjvonly/web:v0.1.1
     container_name: web
@@ -40,3 +39,18 @@ services:
     depends_on:
       - elasticsearch
       - data
+  service:
+    image: ghcr.io/kjvonly/service:v0.1.1
+    container_name: service
+    ports:
+      - "8080:8080"
+    command: /service/bible-api --es-url ${IPADDR}:9200 --arango-db-host ${IPADDR}:49157
+    depends_on:
+      - arangodb
+  arangodb:
+    image: arangodb:3.11.2
+    container_name: arangodb
+    ports:
+      - "49157:8529"
+    environment:
+      - ARANGO_ROOT_PASSWORD=arangodb
