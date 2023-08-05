@@ -30,7 +30,7 @@ services:
       - data
     command: ${IPADDR}
   web:
-    image: ghcr.io/kjvonly/web:v0.1.1
+    image: ghcr.io/kjvonly/web:v0.1.2
     container_name: web
     ports:
       - "5000:5000"
