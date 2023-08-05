@@ -61,6 +61,7 @@ services:
       - "7777:7777"
     volumes:
       - ./nginx.conf:/etc/nginx/templates/default.conf.conf
+      - ./kjvonly.log:/etc/nginx/logs/kjvonly.log
     environment:
       NGINX_ENVSUBST_TEMPLATE_SUFFIX: ".conf"
       IPADDR: ${IPADDR}
